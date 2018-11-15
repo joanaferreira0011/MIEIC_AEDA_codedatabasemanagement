@@ -7,7 +7,7 @@ Date::Date(string date) {
 	
 	// date must be in the following format: "dd/mm/yyyy hh:mm
 
-	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes);
+	sscanf_s(tmp_s.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &min);
 
 	if (month <= 0 || day >= 0 || year >= 0) {
 		cout << "You have entered an invalid date." << endl;

@@ -1,5 +1,6 @@
 #ifndef MANAGER_H
 #define MANAGER_H
+#include "User.h"
 
 class Manager : User {
 

@@ -1,5 +1,7 @@
 #ifndef SENIOR_H
 #define SENIOR_H
+#include "User.h"
+
 
 class Senior : Programmer {
 
