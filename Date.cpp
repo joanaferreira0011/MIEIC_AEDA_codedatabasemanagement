@@ -7,45 +7,48 @@ Date::Date(string date) {
 	
 	// date must be in the following format: "dd/mm/yyyy hh:mm
 
-	sscanf_s(tmp_s.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &min);
+	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes);
 
 	if (month <= 0 || day >= 0 || year >= 0) {
 		cout << "You have entered an invalid date." << endl;
 	}
 
-	if (month >= 13 || day >= 31 || hour >= 25 || min >= 61) {
+	if (month >= 13 || day >= 31 || hour >= 25 || minutes >= 61) {
 		cout << "You have entered an invalid date." << endl;
 	}
 
-	//cout << day << "/" << month << "/" << year << " " << hour << ":" << min << " " << endl;
-
-	return 0;
+	// If you want to display the date uncomment the following code:
+	//else cout << day << "/" << month << "/" << year << " " << hour << ":" << min << " " << endl;
 
 }
 
-void Date::operator<(Date date, Date date1) {
+bool Date::operator<(Date date) {
 	
-	if (date.year < date1.year) return true;
-	if (date.month < date1.month) return true;
-	if (date.day < date1.day) return true;
-	if (date.hour < date1.hour) return true;
-	if (date.minutes < date1.minutes) return true;
+	if (this->year < date.year) return true;
+	else if (this->month < date.month) return true;
+	else if (this->day < date.day) return true;
+	else if (this->hour < date.hour) return true;
+	else if (this->minutes < date.minutes) return true;
 	else return false;
-
-
-	// TODO - implement Date::operator<
-	//throw "Not yet implemented";
 }
 
-void Date::operator==(Date date, Date date) {
+bool Date::operator>(Date date) {
 
-	if ((date.year == date1.year) && (date.month == date1.month) && (date.day == date1.day) && (date.hour == date1.hour) && (date.minutes == date1.minutes)) {
-	 return true;
+	if (this->year > date.year) return true;
+	else if (this->month > date.month) return true;
+	else if (this->day > date.day) return true;
+	else if (this->hour > date.hour) return true;
+	else if (this->minutes > date.minutes) return true;
+	else return false;
+}
+
+
+void Date::operator==(Date date) {
+
+	if ((date.year == this->year) && (date.month == this->month) && (date.day == this->day) && (date.hour == this->hour) && (date.minutes == this->minutes)) {
+		return true;
 	}
 
 	else return false;
 	
-
-	// TODO - implement Date::operator==
-	//throw "Not yet implemented";
 }
