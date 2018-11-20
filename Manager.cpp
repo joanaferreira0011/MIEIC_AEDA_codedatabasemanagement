@@ -1,6 +1,6 @@
 #include "Manager.h"
 
-Manager::Manager(string name, Date birth, string email) : User(name,birth,email);
+Manager::Manager(string name, Date birth, string email) : User(name,birth,email){};
 
 void Manager::deleteBranch(string branchName) {
 	// TODO - implement Manager::deleteBranch

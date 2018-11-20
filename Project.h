@@ -1,9 +1,9 @@
 #ifndef PROJECT_H
 #define PROJECT_H
-#include "User.h"
 #include "Manager.h"
 #include "Branch.h"
-#include <vector>;
+#include "User.h"
+#include <vector>
 
 
 class Project {
@@ -12,7 +12,7 @@ private:
 	int id;
 	string key;
 	Manager manager;
-	vector<User> users;
+	//vector<User> users;
 	Branch master;
 
 public:
@@ -22,13 +22,13 @@ public:
 
 	Manager getManager();
 
-	vector<User> getUsers();
+	//vector<User> getUsers();
 
 	Branch getMaster();
 
 	Project(int id, string key, Manager manager);
 
-	void addUser(User user_name);
+	//void addUser(User user_name);
 
 	void operation();
 };

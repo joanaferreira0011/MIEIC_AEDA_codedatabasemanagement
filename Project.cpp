@@ -27,9 +27,9 @@ Project::Project(int id, string key, Manager manager) {
 }
 
 void Project::addUser(User user_name) {
-	for (unsigned int i = 0; i < users.length(); i++){
-		if (user_name == users[i]) {std::cout << "This user is already in this project"}
-		else users.push(user_name)
+	for (unsigned int i = 0; i < users.size(); i++){
+		if (user_name == users[i]) {std::cout << "This user is already in this project";}
+		else users.push_back(user_name);
 	}
 }
 
