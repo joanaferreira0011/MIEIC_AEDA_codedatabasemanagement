@@ -1,9 +1,10 @@
 #ifndef JUNIOR_H
 #define JUNIOR_H
 #include "User.h"
+#include "Programmer.h"
 
 
-class Junior : Programmer {
+class Junior:Programmer {
 
 
 public:

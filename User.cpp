@@ -1,23 +1,24 @@
 #include "User.h"
 
 User::User(string name, Date birth, string email) {
-	// TODO - implement User::User
-	throw "Not yet implemented";
+	User::name = name;
+	User::birth = birth;
+	User::email = email;
 }
 
-Date User::getBirth() {
+Date User::getBirth() const {
 	return this->birth;
 }
 
-string User::getEmail() {
+string User::getEmail() const {
 	return this->email;
 }
 
-vector<Project*> User::getProjects() {
+vector<Project*> User::getProjects() const {
 	return this->projects;
 }
 
-string User::getName() {
+string User::getName() const {
 	return this->name;
 }
 

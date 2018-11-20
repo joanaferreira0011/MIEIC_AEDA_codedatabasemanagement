@@ -1,6 +1,7 @@
 #ifndef DATE_H
 #define DATE_H
-
+#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -22,6 +23,11 @@ public:
 
 	bool operator>(Date date);
 
+	int getDay();
+	int getMonth();
+	int getYear();
+	int getHour();
+	int getMin();
 };
 
 #endif

@@ -13,11 +13,11 @@ Date::Date(string date) {
 		cout << "You have entered an invalid date." << endl;
 	}
 
-	if (month >= 13 || day >= 31 || hour >= 25 || minutes >= 61) {
+	if (month >= 13 || day >= 32 || hour >= 25 || minutes >= 61) {
 		cout << "You have entered an invalid date." << endl;
 	}
 
-	// If you want to display the date uncomment the following code:
+	// If you want to display the date remove the comment of the following code:
 	//else cout << day << "/" << month << "/" << year << " " << hour << ":" << min << " " << endl;
 
 }
@@ -43,7 +43,7 @@ bool Date::operator>(Date date) {
 }
 
 
-void Date::operator==(Date date) {
+bool Date::operator==(Date date) {
 
 	if ((date.year == this->year) && (date.month == this->month) && (date.day == this->day) && (date.hour == this->hour) && (date.minutes == this->minutes)) {
 		return true;
@@ -52,3 +52,12 @@ void Date::operator==(Date date) {
 	else return false;
 	
 }
+
+int Date::getDay(){return this->day;}
+int Date::getMonth(){return this->month;}
+int Date::getYear(){return this->year;}
+int Date::getHour(){return this->hour;}
+int Date::getMin(){return this->minutes;}
+
+
+

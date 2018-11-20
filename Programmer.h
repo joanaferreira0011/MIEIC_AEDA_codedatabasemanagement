@@ -1,16 +1,21 @@
 #ifndef PROGRAMMER_H
 #define PROGRAMMER_H
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include "Commit.h"
+#include "User.h"
 
-class Programmer : User {
+class Programmer:User{
 
 private:
 	unsigned int reputation;
 	vector<Commit> commits;
 
 public:
-	virtual void getSalary() = 0;
+	virtual double getSalary() = 0;
 
-	void getCommits(int projectID);
+	vector<Commit> getCommits(int projectID);
 };
 
 #endif

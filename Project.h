@@ -2,6 +2,8 @@
 #define PROJECT_H
 #include "User.h"
 #include "Manager.h"
+#include "Branch.h"
+#include <vector>;
 
 
 class Project {

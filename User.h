@@ -1,5 +1,12 @@
 #ifndef USER_H
 #define USER_H
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include "Date.h"
+#include "Project.h"
+
+using namespace std;
 
 class User {
 

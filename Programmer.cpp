@@ -1,6 +1,9 @@
 #include "Programmer.h"
 
-void Programmer::getCommits(int projectID) {
-	// TODO - implement Programmer::getCommits
-	throw "Not yet implemented";
+vector<Commit> Programmer::getCommits(int projectID) {
+	return this->commits;
+}
+
+virtual double Programmer::getSalary(){
+	return -1;
 }

@@ -3,7 +3,7 @@
 Junior::Junior(string name, Date birth, string email) : User(name, birth, email) {}
 
 unsigned int getRanking() {
-	User::getRanking();
+	return User::getRanking();
 }
 
 double Junior::getSalary() {
