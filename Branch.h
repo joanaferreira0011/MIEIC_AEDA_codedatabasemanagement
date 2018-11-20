@@ -1,5 +1,9 @@
 #ifndef BRANCH_H
 #define BRANCH_H
+#include <vector>
+#include "Commit.h"
+
+using namespace std;
 
 class Branch {
 

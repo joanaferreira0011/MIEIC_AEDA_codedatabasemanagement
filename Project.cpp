@@ -21,13 +21,16 @@ Branch Project::getMaster() {
 }
 
 Project::Project(int id, string key, Manager manager) {
-	// TODO - implement Project::Project
-	throw "Not yet implemented";
+	Project::id = id;
+	Project::key = key;
+	Project::manager = manager;
 }
 
-void Project::addUser() {
-	// TODO - implement Project::addUser
-	throw "Not yet implemented";
+void Project::addUser(User user_name) {
+	for (unsigned int i = 0; i < users.length(); i++){
+		if (user_name == users[i]) {std::cout << "This user is already in this project"}
+		else users.push(user_name)
+	}
 }
 
 void Project::operation() {

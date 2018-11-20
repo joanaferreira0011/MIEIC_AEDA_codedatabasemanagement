@@ -1,5 +1,10 @@
 #ifndef PROJECT_H
 #define PROJECT_H
+#include "User.h"
+#include "Manager.h"
+#include "Branch.h"
+#include <vector>;
+
 
 class Project {
 
@@ -23,7 +28,7 @@ public:
 
 	Project(int id, string key, Manager manager);
 
-	void addUser();
+	void addUser(User user_name);
 
 	void operation();
 };

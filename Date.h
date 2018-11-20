@@ -1,5 +1,9 @@
 #ifndef DATE_H
 #define DATE_H
+#include <iostream>
+#include <sstream>
+
+using namespace std;
 
 class Date {
 
@@ -13,13 +17,17 @@ private:
 public:
 	Date(string date);
 
-	void operator<(Date date);
+	bool operator<(Date date);
 
-	void operator==(Date date);
+	bool operator==(Date date);
 
-	void operator<(Date date);
+	bool operator>(Date date);
 
-	void operator==(Date date);
+	int getDay();
+	int getMonth();
+	int getYear();
+	int getHour();
+	int getMin();
 };
 
 #endif

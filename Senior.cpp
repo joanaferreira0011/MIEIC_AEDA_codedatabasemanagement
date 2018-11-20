@@ -1,11 +1,10 @@
 #include "Senior.h"
 
-Senior::Senior(string name, Date birth, string email, double baseSalary, int NIF) {
-	// TODO - implement Senior::Senior
-	throw "Not yet implemented";
+Senior::Senior(string name, Date birth, string email, double baseSalary, int NIF) : User(name, birth, email) {
+	Senior::baseSalary = baseSalary;
+	Senior::NIF = NIF;
 }
 
 double Senior::getSalary() {
-	// TODO - implement Senior::getSalary
-	throw "Not yet implemented";
+	return this->baseSalary;
 }
