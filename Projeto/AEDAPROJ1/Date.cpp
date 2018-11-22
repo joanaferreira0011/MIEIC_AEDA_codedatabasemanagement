@@ -10,25 +10,31 @@ Date::Date() {
 }
 
 Date::Date(string date) {
+	/**
+	* The date must be in the following format: "dd/mm/yyyy hh:mm"
+	* @param date a string of a date
+	*/
 
-	// date must be in the following format: "dd/mm/yyyy hh:mm
 
-	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes);
+
+	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes); //! The scan function reads the date string and stores the date values 
 
 	if (month <= 0 || day >= 0 || year >= 0) {
-		//throw InvalidDate();
+		throw InvalidDate();						//! Throw an error due to an invalid date
 	}
 
 	if (month >= 13 || day >= 32 || hour >= 25 || minutes >= 61) {
-		//throw InvalidDate();
+		throw InvalidDate();			//! Throw an error due to an invalid date
 	}
 
-	// If you want to display the date remove the comment of the following code:
-	//else cout << day << "/" << month << "/" << year << " " << hour << ":" << minutes << " " << endl;
-
+	
 }
 
 bool Date::operator<(Date date) {
+	/**
+	* Operator to compare dates
+	* @param date an object date
+	*/
 
 	if (this->year < date.year) return true;
 	else if (this->month < date.month) return true;
@@ -39,6 +45,10 @@ bool Date::operator<(Date date) {
 }
 
 bool Date::operator>(Date date) {
+	/**
+	* Operator to compare dates
+	* @param date an object date
+	*/
 
 	if (this->year > date.year) return true;
 	else if (this->month > date.month) return true;
@@ -50,6 +60,10 @@ bool Date::operator>(Date date) {
 
 
 bool Date::operator==(Date date) {
+	/**
+	* Operator to compare dates
+	* @param date an object date
+	*/
 
 	if ((date.year == this->year) && (date.month == this->month) && (date.day == this->day) && (date.hour == this->hour) && (date.minutes == this->minutes)) {
 		return true;
@@ -59,9 +73,39 @@ bool Date::operator==(Date date) {
 
 }
 
-int Date::getDay() { return this->day; }
-int Date::getMonth() { return this->month; }
-int Date::getYear() { return this->year; }
-int Date::getHour() { return this->hour; }
-int Date::getMin() { return this->minutes; }
+int Date::getDay() { 
+	/**
+	* Method to return the day
+	*/
+	return this->day; 
+}
+
+int Date::getMonth() { 
+	/**
+	* Method to return the month
+	*/
+	return this->month; 
+}
+
+int Date::getYear() { 
+	/**
+	* Method to return the year
+	*/
+	return this->year; 
+}
+
+int Date::getHour() { 
+	/**
+	* Method to return the hour
+	*/
+	return this->hour; 
+}
+
+int Date::getMin() { 
+	/**
+	* Method to return the minutes
+	*/
+	return this->minutes; 
+}
+
 
