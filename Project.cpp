@@ -37,3 +37,16 @@ void Project::operation() {
 	// TODO - implement Project::operation
 	throw "Not yet implemented";
 }
+
+
+
+Branch::Branch(string name) {
+	Branch::name = name;
+}
+
+
+Commit::Commit(unsigned int id, unsigned int volume, Date date) {
+	Commit::id = id;
+	Commit::volume = volume;
+	Commit::date = date;
+}
