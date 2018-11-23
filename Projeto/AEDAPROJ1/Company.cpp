@@ -44,6 +44,29 @@ int Company::removeUser(string user){
 }
 
 /**
+* @brief Adds a project to the company
+* @param project - pointer to project to add
+*/
+void Company::addProject(Project* project){
+	currentProjects.push_back(project);
+}
+
+/**
+* @brief Removes a project from the company, returns 1 if the project doesn't exist
+* @param id - ID of the project to remove
+*/
+int Company::removeProject(int id){
+	for(size_t i =0; i<currentProjects.size(); i++)
+	{
+		if(currentProjects.at(i)->getId()== id){
+			currentProjects.erase(currentProjects.begin()+i);
+			return 0;
+		}
+	}
+	return 1;
+}
+
+/**
 * @brief Returns the sum of all salaries
 */
 double Company::getTotalValue() const {
@@ -67,4 +90,20 @@ vector<double> Company::getSalaries() const {
 	sort(salaries.begin(), salaries.end());
 
 	return salaries;
+}
+
+/**
+* @brief Sets a project as finished by removing it from the currentProjects and saving it to the past projects, returns 1 if the project doesn't exist
+* @param id - ID of the project to change status
+*/
+int finishedProject(int id){
+	for(size_t i =0; i<currentProjects.size(); i++)
+	{
+		if(currentProjects.at(i)->getId()== id){
+			pastProjects.push_back(currentProjects.at(i));
+			currentProjects.erase(currentProjects.begin()+i);
+			return 0;
+		}
+	}
+	return 1;
 }
