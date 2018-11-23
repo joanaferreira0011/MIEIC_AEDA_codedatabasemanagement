@@ -28,5 +28,4 @@ public:
 	int getYear();
 	int getHour();
 	int getMin();
-};
 

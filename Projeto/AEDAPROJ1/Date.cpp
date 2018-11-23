@@ -18,11 +18,11 @@ Date::Date(string date) {
 	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes); // The scan function reads the date string and stores the date values 
 
 	if (month <= 0 || day >= 0 || year >= 0) {
-		throw invalid_argument("The date is invalid");						//! Throw an error due to an invalid date
+		throw Exception_error();				//! Throw an error due to an invalid date
 	}
 
 	if (month >= 13 || day >= 32 || hour >= 25 || minutes >= 61) {
-		throw invalid_argument("The date is invalid");			//! Throw an error due to an invalid date
+		throw Exception_error();			//! Throw an error due to an invalid date
 	}
 
 	
@@ -35,10 +35,10 @@ Date::Date(string date) {
 bool Date::operator<(Date date) {
 
 	if (this->year < date.year) return true;
-	else if (this->month < date.month) return true;
-	else if (this->day < date.day) return true;
-	else if (this->hour < date.hour) return true;
-	else if (this->minutes < date.minutes) return true;
+	else if (this->month < date.month && this->year == date.year) return true;
+	else if (this->day < date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->hour < date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->minutes < date.minutes && this->hour == date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
 	else return false;
 }
 
@@ -49,10 +49,10 @@ bool Date::operator<(Date date) {
 bool Date::operator>(Date date) {
 
 	if (this->year > date.year) return true;
-	else if (this->month > date.month) return true;
-	else if (this->day > date.day) return true;
-	else if (this->hour > date.hour) return true;
-	else if (this->minutes > date.minutes) return true;
+	else if (this->month > date.month && this->year == date.year) return true;
+	else if (this->day > date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->hour > date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->minutes > date.minutes && this->hour == date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
 	else return false;
 }
 
@@ -105,5 +105,3 @@ int Date::getHour() {
 int Date::getMin() { 
 	return this->minutes; 
 }
-
-
