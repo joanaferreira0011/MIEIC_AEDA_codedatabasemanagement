@@ -41,9 +41,6 @@ void User::operation() {
 
 
 
-
-Manager::Manager(string name, string birth, string email) : User(name, birth, email)
-{}
 void Manager::deleteBranch(string branchName) {
 	// TODO - implement Manager::deleteBranch
 	throw "Not yet implemented";

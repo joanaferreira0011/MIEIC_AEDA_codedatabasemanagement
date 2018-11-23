@@ -1,22 +1,9 @@
 #pragma once
 #include <vector>
+#include "Branch.h"
 #include "User.h"
-#include "Commit.h"
-
 using namespace std;
 
-class Branch {
-public:
-	Branch(string name);
-	vector<Commit> commits;
-	vector<Commit> commitsHistory;
-
-	bool operator==(const Branch branch) const {
-		return (this->commits == branch.commits) && (this->name == branch.name);
-	}
-private:
-	string name;
-};
 
 
 
@@ -26,11 +13,11 @@ private:
 	int id;
 	string key;
 	Manager manager;
-	vector<User> users;
+	vector<User*> users;
 	Branch master;
 
 public:
-	Project(int id, string key, Manager manager);
+	Project(int id, Manager manager);
 
 	int getId();
 
@@ -38,19 +25,20 @@ public:
 
 	Manager getManager();
 
-	vector<User> getUsers();
+	vector<User*> getUsers();
 
 	Branch getMaster();
 
+	void addUser(User* user_name);
 
-	void addUser(User user_name);
-
+	static string generateKey();
 };
 
 
-class AdvancedProject : Project {
+class AdvancedProject : public Project {
 
 public:
+	AdvancedProject(int id, string key, Manager manager);
 	bool addBranch(Branch* newBranch);
 	bool removeBranch(Branch* branch);
 	bool mergeBranches(Branch* baseBranch, Branch* mergedBranch, Programmer* user);
@@ -58,3 +46,4 @@ public:
 private:
 	vector<Branch*> branches;
 };
+

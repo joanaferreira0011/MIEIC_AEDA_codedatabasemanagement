@@ -1,11 +1,22 @@
 #include "Project.h"
 #include "stdafx.h"
+#include <time.h>
 
+string Project::generateKey() {
+	string randomKey = "";
+	srand(time(NULL));
+	vector<char> allowedChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+	for (int i = 0; i < 16; i++) {
+		randomKey += allowedChars[rand() % allowedChars.size()];
+	}
+}
 
-Project::Project(int id, string key, Manager manager) {
-	Project::id = id;
-	Project::key = key;
-	Project::manager = manager;
+Project::Project(int idA, Manager managerA) {
+	id = idA;
+	key = Project::generateKey();
+	manager = managerA;
 }
 
 int Project::getId() {
@@ -20,7 +31,7 @@ Manager Project::getManager() {
 	return this->manager;
 }
 
-vector<User> Project::getUsers() {
+vector<User*> Project::getUsers() {
 	return this->users;
 }
 
@@ -28,16 +39,28 @@ Branch Project::getMaster() {
 	return this->master;
 }
 
-
-void Project::addUser(User user_name) {
+/**
+* @brief Adds a user to the project
+* @param User - user to add
+*/
+void Project::addUser(User* user) {
 	for (unsigned int i = 0; i < users.size(); i++) {
-		/*if (user_name == users[i]) { std::cout << "This user is already in this project"; }
-		else users.push_back(user_name);*/
+		if (user == users[i]) { std::cout << "This user is already in this project"; return; }
 		
 	}
-	users.push_back(user_name);
+	users.push_back(user);
 }
 
+
+AdvancedProject::AdvancedProject(int id, string key, Manager manager) : Project(id, key, manager) {
+
+};
+
+
+/**
+* @brief Adds a branch to the project
+* @param Branch newBranch - branch to add
+*/
 bool AdvancedProject::addBranch(Branch* newBranch) {
 	for (unsigned int i = 0; i < branches.size(); i++) {
 		if (newBranch == branches[i]) {
@@ -46,13 +69,24 @@ bool AdvancedProject::addBranch(Branch* newBranch) {
 	}
 	branches.push_back(newBranch);
 }
-bool AdvancedProject::removeBranch(Branch* newBranch) {
+
+/**
+* @brief Remove a branch from the project
+* @param branch branch - branch to remove
+*/
+bool AdvancedProject::removeBranch(Branch* branch) {
 	for (unsigned int i = 0; i < branches.size(); i++) {
-		if (newBranch == branches[i]) {
+		if (branch == branches[i]) {
 			branches.erase(branches.begin() + i);
 		}
 	}
 }
+/**
+* @brief Merges two branches of the project
+* @param Branch* baseBranch - branch to merge into
+* @param Branch* mergedBranch - branch to be merged
+* @param Programmer* user - branch to remove
+*/
 bool AdvancedProject::mergeBranches(Branch* baseBranch, Branch* mergedBranch, Programmer* user) {
 	if (typeid(user) == typeid(Junior)) {
 		if (user->getRanking < 5000 && user->getCommits(1).size < 5) { //precisava de getCommits sem projeto
@@ -61,7 +95,7 @@ bool AdvancedProject::mergeBranches(Branch* baseBranch, Branch* mergedBranch, Pr
 	}
 	
 	baseBranch->commits.insert(baseBranch->commits.end(), mergedBranch->commits.begin(), mergedBranch->commits.end());
-	
+	baseBranch->commitsHistory.insert(baseBranch->commitsHistory.end(), mergedBranch->commitsHistory.begin(), mergedBranch->commitsHistory.end());
 	for (unsigned int i = 0; i < this->branches.size(); i++) {
 		if (branches[i] == mergedBranch) {
 			branches.erase(branches.begin() + i);
