@@ -16,28 +16,24 @@ string User::getEmail() const {
 	return this->email;
 }
 
-vector<Project*> User::getProjects() const {
-	return this->projects;
-}
-
 string User::getName() const {
 	return this->name;
 }
 
-unsigned int User::getRanking(string projectName) const {
-	// TODO - implement User::getRanking
-	throw "Not yet implemented";
+/**
+* @brief Returns all the projects of an User
+*/
+vector<Project*> User::getProjects() const {
+	return this->projects;
+}
+/**
+* @brief adds a project to an User
+*/
+vector<Project*> User::addProject(Project* project) {
+	projects.push_back(project);
+	return projects;
 }
 
-unsigned int User::getRanking(string initialDate, string finalDate) const {
-	// TODO - implement User::getRanking
-	throw "Not yet implemented";
-}
-
-void User::operation() {
-	// TODO - implement User::operation
-	throw "Not yet implemented";
-}
 
 /**
 * @brief Base constructor for the manager class
@@ -48,27 +44,17 @@ void User::operation() {
 Manager::Manager(string name, string birth, string email):User(name, birth, email){}
 
 /**
-* @brief Function to delete a branch
-* @param branchName - string of the branch's name
-*/
-void Manager::deleteBranch(string branchName) {
-	AdvancedProject::removeBranch(branchName);
-}
-
-/**
-* @brief Function to merge two branches
-* @param firstBranch - string of the first branch's name
-* @param secondBranch - string of the second branch's name (the one to be merged)
-*/
-void Manager::mergeBranches(string firstBranch, string secondBranch) {
-	AdvancedProject::mergeBranches(firstBranch, secondBranch);
-}
-
-/**
 * @brief Function to return the salary of a manager
 */
 double Manager::getSalary() {
 	return this->fixedSalary;
+}
+
+/**
+* @brief Function to return a boolean of the users permissions
+*/
+bool Manager::hasPermission() {
+	return true;
 }
 
 /**
@@ -93,6 +79,36 @@ vector<Commit> Programmer::getCommits(int projectID) {
 double Programmer::getSalary() {
 	return -1;
 }
+
+/**
+* @brief Function to return a boolean of the users permissions
+*/
+bool Programmer::hasPermission() {
+	return false;
+}
+
+
+
+unsigned int Programmer::getRanking(int projectid) const {
+	vector<User*> programmers;
+	for (int i = 0; i < projects.size(); i++) {
+		if (projects[i]->getId == projectid) {
+			/*
+			Should order the users of the project by rank volume contributions and return the position of the user that calls the method
+			*/
+			programmers = projects[i]->getUsers();
+		}
+	}
+}
+
+unsigned int Programmer::getRanking(string initialDate, string finalDate) const {
+	// TODO - implement User::getRanking
+	throw "Not yet implemented";
+}
+
+
+
+
 
 /**
 * @brief Base constructor for the manager class
@@ -140,6 +156,15 @@ double Junior::getSalary() const {
 	double salary = 50 + 50 * mult;
 }
 
+/**
+* @brief Function to return a boolean of the users permissions
+*/
+bool Junior::hasPermission() {
+	if (this->getReputation() > 3000) {
+		return true;
+	}
+	return false;
+}
 
 
 
@@ -162,4 +187,33 @@ Senior::Senior(string name, string birth, string email, double baseSalary, int N
 */
 double Senior::getSalary() {
 	return this->baseSalary;
+}
+
+/**
+* @brief Function to return a boolean of the users permissions
+*/
+bool Senior::hasPermission() {
+	return true;
+}
+
+/**
+* @brief Function to return the senior programmer's reputation
+*/
+double Senior::getReputation() {
+	double commitMult = 20;
+	double	volMut = 1.99975;
+	double nCommit = 0;
+	double vol = 0;
+	vector<Commit> thisCommits = this->getCommits;
+
+	if (this->getCommits.size() >= 100) {
+		nCommit = 100;
+	}
+	for (unsigned int i = 0; i < this->getCommits.size(); i++) {
+		vol += thisCommits[i].getVolume();
+	}
+	if (vol >= 4000) {
+		vol = 4000;
+	}
+	return commitMult * nCommit + volMut * vol * 2;
 }

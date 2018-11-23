@@ -38,9 +38,9 @@ class AdvancedProject : public Project {
 
 public:
 	AdvancedProject(int idA, Manager* managerA);
-	bool addBranch(Branch* newBranch);
-	bool removeBranch(Branch* branch);
-	bool mergeBranches(Branch* baseBranch, Branch* mergedBranch, Programmer* user);
+	bool addBranch(Branch* newBranch, User* user);
+	bool removeBranch(Branch* branch, User* user);
+	bool mergeBranches(Branch* baseBranch, Branch* mergedBranch, User* user);
 
 private:
 	vector<Branch*> branches;

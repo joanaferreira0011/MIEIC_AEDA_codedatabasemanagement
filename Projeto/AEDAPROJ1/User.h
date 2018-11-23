@@ -13,29 +13,27 @@ private:
 	string name;
 	Date birth;
 	string email;
-	vector<Project*> projects;
 
 public:
+	vector<Project*> projects;
+
 	User(string name, string birth, string email);
 
 	Date getBirth() const;
 
 	string getEmail() const;
 
-	//vector<Project*> addProjects() const;
+	string getName() const;
+
+	vector<Project*> addProject(Project* project);
 
 	vector<Project*> getProjects() const;
 
-	string getName() const;
-
-	unsigned int getRanking(string projectName) const;
-
-	unsigned int getRanking(string initialDate, string finalDate) const;
-
-	void operation();
-
 	virtual double getSalary() {
 		return -1;
+	}
+	virtual bool hasPermission() {
+		return false;
 	}
 };
 
@@ -45,11 +43,9 @@ private:
 public:
 	Manager(string name, string birth, string email);
 
-	void deleteBranch(string branchName);
-
-	void mergeBranches(string firstBranch, string secondBranch);
-
 	double getSalary();
+
+	bool hasPermission();
 
 };
 class Programmer : User {
@@ -62,8 +58,21 @@ public:
 	Programmer(string name, string birth, string email);
 	double getSalary() = 0;
 
+	bool hasPermission();
+
+	virtual double getReputation() {
+		return 0;
+	}
+
 	vector<Commit> getCommits(int projectID);
+
+
+	unsigned int getRanking(int projectid) const;
+
+	unsigned int getRanking(string initialDate, string finalDate) const;
 };
+
+
 class Junior : Programmer {
 private:
 	double reputation;
@@ -71,9 +80,12 @@ public:
 	double getSalary() const;
 	unsigned  int getRanking() const;
 	double getReputation();
+	bool hasPermission();
 
 	Junior(string name, string birth, string email);
 };
+
+
 class Senior : Programmer {
 private:
 	double baseSalary;
@@ -81,6 +93,7 @@ private:
 
 public:
 	Senior(string name, string birth, string email, double baseSalary, int NIF);
-
+	bool hasPermission();
 	double getSalary();
+	double getReputation();
 };

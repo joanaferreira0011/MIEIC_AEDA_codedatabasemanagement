@@ -86,8 +86,10 @@ AdvancedProject::AdvancedProject(int idA, Manager* managerA) : Project(idA, mana
 /**
 * @brief Adds a branch to the project
 * @param Branch newBranch - branch to add
+* @param User user - user that adds the branch
 */
-bool AdvancedProject::addBranch(Branch* newBranch) {
+bool AdvancedProject::addBranch(Branch* newBranch, User* user) {
+	if (!(user->hasPermission())) return false;
 	for (unsigned int i = 0; i < branches.size(); i++) {
 		if (newBranch == branches[i]) {
 			std::cout << "This branch already exists" << std::endl;
@@ -99,8 +101,10 @@ bool AdvancedProject::addBranch(Branch* newBranch) {
 /**
 * @brief Remove a branch from the project
 * @param branch branch - branch to remove
+* @param User user - user that removes the branch
 */
-bool AdvancedProject::removeBranch(Branch* branch) {
+bool AdvancedProject::removeBranch(Branch* branch, User* user) {
+	if (!(user->hasPermission())) return false;
 	for (unsigned int i = 0; i < branches.size(); i++) {
 		if (branch == branches[i]) {
 			branches.erase(branches.begin() + i);
@@ -111,14 +115,10 @@ bool AdvancedProject::removeBranch(Branch* branch) {
 * Merges two branches of the project
 * @param Branch* baseBranch - branch to merge into
 * @param Branch* mergedBranch - branch to be merged
-* @param Programmer* user - user that removes the branch
+* @param Programmer* user - user that merges the branch
 */
-bool AdvancedProject::mergeBranches(Branch* baseBranch, Branch* mergedBranch, Programmer* user) {
-	if (typeid(user) == typeid(Junior)) {
-		if (user->getRanking < 5000 || user->getCommits(1).size < 5) { //precisava de getCommits sem projeto
-			return false;
-		}
-	}
+bool AdvancedProject::mergeBranches(Branch* baseBranch, Branch* mergedBranch, User* user) {
+	if (!(user->hasPermission())) return false;
 	
 	baseBranch->commits.insert(baseBranch->commits.end(), mergedBranch->commits.begin(), mergedBranch->commits.end());
 	baseBranch->commitsHistory.insert(baseBranch->commitsHistory.end(), mergedBranch->commitsHistory.begin(), mergedBranch->commitsHistory.end());
