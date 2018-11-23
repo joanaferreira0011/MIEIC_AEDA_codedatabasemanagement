@@ -41,7 +41,7 @@ public:
 
 class Manager : User {
 private:
-	double salary = 4750;
+	double fixedSalary = 4750;
 public:
 	Manager(string name, string birth, string email);
 
@@ -60,19 +60,19 @@ private:
 
 public:
 	Programmer(string name, string birth, string email);
-	//virtual ~Programmer();
 	double getSalary() = 0;
 
 	vector<Commit> getCommits(int projectID);
 };
 class Junior : Programmer {
 private:
-	int ranking;
+	double reputation;
 public:
 	double getSalary() const;
 	unsigned  int getRanking() const;
+	double getReputation();
 
-	Junior(string name, string birth, string email, int ranking);
+	Junior(string name, string birth, string email);
 };
 class Senior : Programmer {
 private:

@@ -55,10 +55,10 @@ void Manager::mergeBranches(string firstBranch, string secondBranch) {
 }
 
 double Manager::getSalary() {
-	return this->salary;
+	return this->fixedSalary;
 }
 
-
+Programmer::Programmer(string name, string birth, string email) : User(name, birth, email) {}
 
 vector<Commit> Programmer::getCommits(int projectID) {
 	return this->commits;
@@ -68,12 +68,30 @@ double Programmer::getSalary() {
 	return -1;
 }
 
-Junior::Junior(string name, string birth, string email, int ranking) : Programmer(name, birth, email) {
-	Junior::ranking = ranking;
+Junior::Junior(string name, string birth, string email) : Programmer(name, birth, email) {
 }
 
 unsigned int Junior::getRanking() const{
 	return this->ranking;
+}
+
+double Junior::getReputation(){
+	double commitMult = 20;
+	double	volMut = 1.99975;
+	double nCommit = 0;
+	double vol = 0;
+	vector<Commit> thisCommits = this->getCommits;
+
+	if (this->getCommits.size() >= 100) {
+		nCommit = 100;
+	}
+	for (unsigned int i = 0; i < this->getCommits.size(); i++){
+		vol += thisCommits[i].getVolume();
+	}
+	if (vol >= 4000) {
+		vol = 4000;
+	}
+	return commitMult * nCommit + volMut * vol;
 }
 
 double Junior::getSalary() const {
