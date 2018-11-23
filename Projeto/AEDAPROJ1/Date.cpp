@@ -9,15 +9,13 @@ Date::Date() {
 	this->minutes = 1;
 }
 
+/**
+* @brief Constructor for the date class (The date must be in the following format: "dd/mm/yyyy hh:mm")
+* @param date - string that represents the date
+*/
 Date::Date(string date) {
-	/**
-	* The date must be in the following format: "dd/mm/yyyy hh:mm"
-	* @param date a string of a date
-	*/
 
-
-
-	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes); //! The scan function reads the date string and stores the date values 
+	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes); // The scan function reads the date string and stores the date values 
 
 	if (month <= 0 || day >= 0 || year >= 0) {
 		throw invalid_argument("The date is invalid");						//! Throw an error due to an invalid date
@@ -30,11 +28,11 @@ Date::Date(string date) {
 	
 }
 
+/**
+* @brief Operator to compare dates
+* @param date - object of the class Date
+*/
 bool Date::operator<(Date date) {
-	/**
-	* Operator to compare dates
-	* @param date an object date
-	*/
 
 	if (this->year < date.year) return true;
 	else if (this->month < date.month) return true;
@@ -44,11 +42,11 @@ bool Date::operator<(Date date) {
 	else return false;
 }
 
+/**
+* @brief Operator to compare dates
+* @param date - object of the class Date
+*/
 bool Date::operator>(Date date) {
-	/**
-	* Operator to compare dates
-	* @param date an object date
-	*/
 
 	if (this->year > date.year) return true;
 	else if (this->month > date.month) return true;
@@ -59,11 +57,11 @@ bool Date::operator>(Date date) {
 }
 
 
+/**
+* @brief Operator to compare dates
+* @param date - object of the class Date
+*/
 bool Date::operator==(Date date) {
-	/**
-	* Operator to compare dates
-	* @param date an object date
-	*/
 
 	if ((date.year == this->year) && (date.month == this->month) && (date.day == this->day) && (date.hour == this->hour) && (date.minutes == this->minutes)) {
 		return true;
@@ -73,38 +71,38 @@ bool Date::operator==(Date date) {
 
 }
 
+/**
+* @brief Function to return the day
+*/
 int Date::getDay() { 
-	/**
-	* Method to return the day
-	*/
 	return this->day; 
 }
 
+/**
+* @brief Function to return the month
+*/
 int Date::getMonth() { 
-	/**
-	* Method to return the month
-	*/
 	return this->month; 
 }
 
+/**
+* @brief Function to return the year
+*/
 int Date::getYear() { 
-	/**
-	* Method to return the year
-	*/
 	return this->year; 
 }
 
+/**
+* @brief Function to return the hour
+*/
 int Date::getHour() { 
-	/**
-	* Method to return the hour
-	*/
 	return this->hour; 
 }
 
+/**
+* @brief Function to return the minutes
+*/
 int Date::getMin() { 
-	/**
-	* Method to return the minutes
-	*/
 	return this->minutes; 
 }
 
