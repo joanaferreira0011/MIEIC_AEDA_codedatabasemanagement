@@ -18,11 +18,11 @@ Date::Date(string date) {
 	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes); // The scan function reads the date string and stores the date values 
 
 	if (month <= 0 || day >= 0 || year >= 0) {
-		throw Exception_error();				//! Throw an error due to an invalid date
+		throw Error(1);				//! Throw an error due to an invalid date
 	}
 
 	if (month >= 13 || day >= 32 || hour >= 25 || minutes >= 61) {
-		throw Exception_error();			//! Throw an error due to an invalid date
+		throw Error(1);			//! Throw an error due to an invalid date
 	}
 
 	

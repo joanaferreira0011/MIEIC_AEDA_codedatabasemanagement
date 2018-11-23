@@ -1,5 +1,5 @@
 #pragma once
-
+#include <Error.h>
 #include <iostream>
 
 using namespace std;
@@ -29,3 +29,4 @@ public:
 	int getHour();
 	int getMin();
 
+}

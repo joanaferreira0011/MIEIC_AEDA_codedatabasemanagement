@@ -1,8 +1,4 @@
-#include "stdafx.h"
 #include "Error.h"
-#include <iostream>
-
-using namespace std;
 
 Error::Error(int error)
 {
