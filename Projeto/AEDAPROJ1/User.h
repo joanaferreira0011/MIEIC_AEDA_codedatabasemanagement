@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "Project.h"
 #include "Date.h"
+#include "Project.h"
 
 using namespace std;
 
@@ -14,9 +14,6 @@ private:
 	vector<Project*> projects;
 
 public:
-	User() {
-
-	}
 	User(string name, string birth, string email);
 
 	Date getBirth() const;
@@ -33,15 +30,20 @@ public:
 
 	unsigned int getRanking(string initialDate, string finalDate) const;
 
-	void operation();
-
 	virtual double getSalary() {
 		return -1;
 	}
 };
 
+class Manager : public User {
+private:
+	double fixedSalary = 4750;
+public:
+	Manager(string name, string birth, string email);
 
+	double getSalary();
 
+};
 class Programmer : public User {
 
 private:
@@ -50,26 +52,20 @@ private:
 
 public:
 	Programmer(string name, string birth, string email);
-	//virtual ~Programmer();
 	double getSalary() = 0;
 
 	vector<Commit> getCommits(int projectID);
 };
-
-
-
 class Junior : public Programmer {
 private:
-	int ranking;
+	double reputation;
 public:
 	double getSalary() const;
 	unsigned  int getRanking() const;
+	double getReputation();
 
-	Junior(string name, string birth, string email, int ranking);
+	Junior(string name, string birth, string email);
 };
-
-
-
 class Senior : public Programmer {
 private:
 	double baseSalary;
@@ -79,19 +75,4 @@ public:
 	Senior(string name, string birth, string email, double baseSalary, int NIF);
 
 	double getSalary();
-};
-
-
-
-class Manager : public User {
-private:
-	double salary = 4750;
-public:
-
-	void deleteBranch(string branchName);
-
-	void mergeBranches(string firstBranch, string secondBranch);
-
-	double getSalary();
-
 };

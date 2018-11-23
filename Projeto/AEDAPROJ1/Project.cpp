@@ -2,13 +2,16 @@
 #include "stdafx.h"
 #include <time.h>
 
+/**
+* @brief generates a unique Key 16 Char 0-9, a-z, A-Z
+*/
 string Project::generateKey() {
 	string randomKey = "";
 	srand(time(NULL));
 	vector<char> allowedChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < 8; i++) {
 		randomKey += allowedChars[rand() % allowedChars.size()];
 	}
 }
@@ -40,7 +43,7 @@ Branch Project::getMaster() {
 }
 
 /**
-* @brief Adds a user to the project
+* Adds a user to the project
 * @param User - user to add
 */
 void Project::addUser(User* user) {
@@ -82,14 +85,14 @@ bool AdvancedProject::removeBranch(Branch* branch) {
 	}
 }
 /**
-* @brief Merges two branches of the project
+* Merges two branches of the project
 * @param Branch* baseBranch - branch to merge into
 * @param Branch* mergedBranch - branch to be merged
-* @param Programmer* user - branch to remove
+* @param Programmer* user - user that removes the branch
 */
 bool AdvancedProject::mergeBranches(Branch* baseBranch, Branch* mergedBranch, Programmer* user) {
 	if (typeid(user) == typeid(Junior)) {
-		if (user->getRanking < 5000 && user->getCommits(1).size < 5) { //precisava de getCommits sem projeto
+		if (user->getRanking < 5000 || user->getCommits(1).size < 5) { //precisava de getCommits sem projeto
 			return false;
 		}
 	}
