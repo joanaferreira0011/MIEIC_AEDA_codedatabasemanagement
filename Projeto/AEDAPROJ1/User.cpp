@@ -52,8 +52,7 @@ Manager::Manager(string name, string birth, string email):User(name, birth, emai
 * @param branchName - string of the branch's name
 */
 void Manager::deleteBranch(string branchName) {
-	// TODO - implement Manager::deleteBranch
-	throw "Not yet implemented";
+	AdvancedProject::removeBranch(branchName);
 }
 
 /**
@@ -62,8 +61,7 @@ void Manager::deleteBranch(string branchName) {
 * @param secondBranch - string of the second branch's name (the one to be merged)
 */
 void Manager::mergeBranches(string firstBranch, string secondBranch) {
-	// TODO - implement Manager::mergeBranches
-	throw "Not yet implemented";
+	AdvancedProject::mergeBranches(firstBranch, secondBranch);
 }
 
 /**
