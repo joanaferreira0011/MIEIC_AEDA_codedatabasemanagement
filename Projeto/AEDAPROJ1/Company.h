@@ -17,6 +17,7 @@ public:
 	Company(string name, vector<User> users);
 	Company(string name);
 	void addUser(User* user);
+	int removeUser(string user);
 	double getTotalValue() const;
 	vector<double> getSalaries() const;
 };
