@@ -79,7 +79,7 @@ double Company::getTotalValue() const {
 }
 
 /**
-* @brief Returns a vector with all the salaries
+* @brief Returns a vector with all the salaries sorted from lowest to higher
 */
 vector<double> Company::getSalaries() const {
 	vector<double> salaries;
@@ -107,3 +107,17 @@ int finishedProject(int id){
 	}
 	return 1;
 }
+
+/**
+* @brief returns a vector with the current projects
+*/
+vector<Project*> getCurrentProjects(){return currentProjects;}
+/**
+* @brief returns a vector with the past projects
+*/
+vector<Project*> getPastProjects(){return pastProjects;}
+
+/**
+* @brief returns a vector with all the users
+*/
+vector<User*> getUsers(){return users;}

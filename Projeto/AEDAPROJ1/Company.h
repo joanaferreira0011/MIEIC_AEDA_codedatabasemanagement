@@ -25,6 +25,9 @@ public:
 	double getTotalValue() const;
 	vector<double> getSalaries() const;
 	int finishedProject(int id);
+	vector<Project*> getCurrentProjects();
+	vector<Project*> getPastProjects();
+	vector<User*> getUsers();
 };
 
 #endif
