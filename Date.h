@@ -1,7 +1,6 @@
-#ifndef DATE_H
-#define DATE_H
+#pragma once
+
 #include <iostream>
-#include <sstream>
 
 using namespace std;
 
@@ -15,6 +14,7 @@ private:
 	unsigned int minutes;
 
 public:
+	Date();
 	Date(string date);
 
 	bool operator<(Date date);
@@ -28,6 +28,4 @@ public:
 	int getYear();
 	int getHour();
 	int getMin();
-};
 
-#endif
