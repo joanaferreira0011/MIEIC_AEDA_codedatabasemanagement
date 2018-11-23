@@ -3,6 +3,7 @@
 
 /*
 * Branch contains a name, commit list and a commit history
+* @param string nameA - name of the branch
 */
 Branch::Branch(string nameA) {
 	name = nameA;

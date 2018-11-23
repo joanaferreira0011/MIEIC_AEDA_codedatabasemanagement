@@ -16,28 +16,47 @@ string Project::generateKey() {
 	}
 }
 
-Project::Project(int idA, Manager managerA) {
+/**
+* @class Project
+* @param int idA - Project id
+* @param Manager* managerA - Manager of the project
+*/
+Project::Project(int idA, Manager* managerA) {
 	id = idA;
 	key = Project::generateKey();
 	manager = managerA;
 }
-
+/*
+* returns the project id
+*/
 int Project::getId() {
 	return this->id;
 }
 
+/*
+* returns the project key
+*/
 string Project::getKey() {
 	return this->key;
 }
 
-Manager Project::getManager() {
+/*
+* returns the manager of the project
+*/
+Manager* Project::getManager() {
 	return this->manager;
 }
 
+/*
+* returns an array of the project's users
+*/
 vector<User*> Project::getUsers() {
 	return this->users;
 }
 
+/*
+* returns the master branch of the project
+*/
 Branch Project::getMaster() {
 	return this->master;
 }
@@ -54,8 +73,12 @@ void Project::addUser(User* user) {
 	users.push_back(user);
 }
 
-
-AdvancedProject::AdvancedProject(int id, string key, Manager manager) : Project(id, key, manager) {
+/**
+* @class AdvancedProject
+* @param int idA - Project id
+* @param Manager* managerA - Manager of the project
+*/
+AdvancedProject::AdvancedProject(int idA, Manager* managerA) : Project(idA, managerA) {
 
 };
 
