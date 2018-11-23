@@ -26,4 +26,3 @@ bool Branch::removeCommit(Commit* commit) {
 		}
 	}
 }
-

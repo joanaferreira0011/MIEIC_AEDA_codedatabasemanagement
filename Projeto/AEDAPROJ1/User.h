@@ -2,6 +2,8 @@
 #include <vector>
 #include "Date.h"
 #include "Project.h"
+#include "Branch.h"
+#include "Commit.h"
 
 using namespace std;
 
@@ -30,21 +32,27 @@ public:
 
 	unsigned int getRanking(string initialDate, string finalDate) const;
 
+	void operation();
+
 	virtual double getSalary() {
 		return -1;
 	}
 };
 
-class Manager : public User {
+class Manager : User {
 private:
 	double fixedSalary = 4750;
 public:
 	Manager(string name, string birth, string email);
 
+	void deleteBranch(string branchName);
+
+	void mergeBranches(string firstBranch, string secondBranch);
+
 	double getSalary();
 
 };
-class Programmer : public User {
+class Programmer : User {
 
 private:
 	unsigned int reputation;
@@ -56,7 +64,7 @@ public:
 
 	vector<Commit> getCommits(int projectID);
 };
-class Junior : public Programmer {
+class Junior : Programmer {
 private:
 	double reputation;
 public:
@@ -66,7 +74,7 @@ public:
 
 	Junior(string name, string birth, string email);
 };
-class Senior : public Programmer {
+class Senior : Programmer {
 private:
 	double baseSalary;
 	int NIF;

@@ -5,8 +5,6 @@
 using namespace std;
 
 
-
-
 class Project {
 
 private:
@@ -24,6 +22,7 @@ public:
 	string getKey();
 
 	Manager getManager();
+
 
 	vector<User*> getUsers();
 

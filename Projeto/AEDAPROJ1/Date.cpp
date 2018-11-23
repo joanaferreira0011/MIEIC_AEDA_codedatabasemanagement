@@ -9,46 +9,58 @@ Date::Date() {
 	this->minutes = 1;
 }
 
+/**
+* @brief Constructor for the date class (The date must be in the following format: "dd/mm/yyyy hh:mm")
+* @param date - string that represents the date
+*/
 Date::Date(string date) {
 
-	// date must be in the following format: "dd/mm/yyyy hh:mm
-
-	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes);
+	sscanf_s(date.c_str(), "%2d/%2d/%4d %2d:%2d", &day, &month, &year, &hour, &minutes); // The scan function reads the date string and stores the date values 
 
 	if (month <= 0 || day >= 0 || year >= 0) {
-		//throw InvalidDate();
+		throw Error(1);				//! Throw an error due to an invalid date
 	}
 
 	if (month >= 13 || day >= 32 || hour >= 25 || minutes >= 61) {
-		//throw InvalidDate();
+		throw Error(1);			//! Throw an error due to an invalid date
 	}
 
-	// If you want to display the date remove the comment of the following code:
-	//else cout << day << "/" << month << "/" << year << " " << hour << ":" << minutes << " " << endl;
-
+	
 }
 
+/**
+* @brief Operator to compare dates
+* @param date - object of the class Date
+*/
 bool Date::operator<(Date date) {
 
 	if (this->year < date.year) return true;
-	else if (this->month < date.month) return true;
-	else if (this->day < date.day) return true;
-	else if (this->hour < date.hour) return true;
-	else if (this->minutes < date.minutes) return true;
+	else if (this->month < date.month && this->year == date.year) return true;
+	else if (this->day < date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->hour < date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->minutes < date.minutes && this->hour == date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
 	else return false;
 }
 
+/**
+* @brief Operator to compare dates
+* @param date - object of the class Date
+*/
 bool Date::operator>(Date date) {
 
 	if (this->year > date.year) return true;
-	else if (this->month > date.month) return true;
-	else if (this->day > date.day) return true;
-	else if (this->hour > date.hour) return true;
-	else if (this->minutes > date.minutes) return true;
+	else if (this->month > date.month && this->year == date.year) return true;
+	else if (this->day > date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->hour > date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
+	else if (this->minutes > date.minutes && this->hour == date.hour && this->day == date.day && this->month == date.month && this->year == date.year) return true;
 	else return false;
 }
 
 
+/**
+* @brief Operator to compare dates
+* @param date - object of the class Date
+*/
 bool Date::operator==(Date date) {
 
 	if ((date.year == this->year) && (date.month == this->month) && (date.day == this->day) && (date.hour == this->hour) && (date.minutes == this->minutes)) {
@@ -59,9 +71,37 @@ bool Date::operator==(Date date) {
 
 }
 
-int Date::getDay() { return this->day; }
-int Date::getMonth() { return this->month; }
-int Date::getYear() { return this->year; }
-int Date::getHour() { return this->hour; }
-int Date::getMin() { return this->minutes; }
+/**
+* @brief Function to return the day
+*/
+int Date::getDay() { 
+	return this->day; 
+}
 
+/**
+* @brief Function to return the month
+*/
+int Date::getMonth() { 
+	return this->month; 
+}
+
+/**
+* @brief Function to return the year
+*/
+int Date::getYear() { 
+	return this->year; 
+}
+
+/**
+* @brief Function to return the hour
+*/
+int Date::getHour() { 
+	return this->hour; 
+}
+
+/**
+* @brief Function to return the minutes
+*/
+int Date::getMin() { 
+	return this->minutes; 
+}
