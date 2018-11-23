@@ -40,13 +40,16 @@ public:
 };
 
 class Manager : User {
-
+private:
+	double salary = 4750;
 public:
 	Manager(string name, string birth, string email);
 
 	void deleteBranch(string branchName);
 
 	void mergeBranches(string firstBranch, string secondBranch);
+
+	double getSalary();
 
 };
 class Programmer : User {
@@ -63,12 +66,13 @@ public:
 	vector<Commit> getCommits(int projectID);
 };
 class Junior : Programmer {
-
+private:
+	int ranking;
 public:
 	double getSalary() const;
 	unsigned  int getRanking() const;
 
-	Junior(string name, string birth, string email);
+	Junior(string name, string birth, string email, int ranking);
 };
 class Senior : Programmer {
 private:

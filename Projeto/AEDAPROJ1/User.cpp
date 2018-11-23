@@ -54,6 +54,10 @@ void Manager::mergeBranches(string firstBranch, string secondBranch) {
 	throw "Not yet implemented";
 }
 
+double Manager::getSalary() {
+	return this->salary;
+}
+
 
 
 vector<Commit> Programmer::getCommits(int projectID) {
@@ -64,16 +68,17 @@ double Programmer::getSalary() {
 	return -1;
 }
 
-Junior::Junior(string name, string birth, string email) : Programmer(name, birth, email) {}
+Junior::Junior(string name, string birth, string email, int ranking) : Programmer(name, birth, email) {
+	Junior::ranking = ranking;
+}
 
-unsigned int getRanking() {
-	//return User::getRanking();
-	return 0;
+unsigned int Junior::getRanking() const{
+	return this->ranking;
 }
 
 double Junior::getSalary() const {
-	// TODO - implement Junior::getSalary
-	throw "Not yet implemented";
+	int mult = this->getRanking / 1000;
+	double salary = 50 + 50 * mult;
 }
 
 
