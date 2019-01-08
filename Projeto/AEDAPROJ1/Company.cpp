@@ -96,7 +96,7 @@ vector<double> Company::getSalaries() const {
 * @brief Sets a project as finished by removing it from the currentProjects and saving it to the past projects, returns 1 if the project doesn't exist
 * @param id - ID of the project to change status
 */
-int finishedProject(int id){
+int Company::finishedProject(int id){
 	for(size_t i =0; i<currentProjects.size(); i++)
 	{
 		if(currentProjects.at(i)->getId()== id){
@@ -111,13 +111,13 @@ int finishedProject(int id){
 /**
 * @brief returns a vector with the current projects
 */
-vector<Project*> getCurrentProjects(){return currentProjects;}
+vector<Project*> Company::getCurrentProjects(){return currentProjects;}
 /**
 * @brief returns a vector with the past projects
 */
-vector<Project*> getPastProjects(){return pastProjects;}
+vector<Project*> Company::getPastProjects(){return pastProjects;}
 
 /**
 * @brief returns a vector with all the users
 */
-vector<User*> getUsers(){return users;}
+vector<User*> Company::getUsers(){return users;}
